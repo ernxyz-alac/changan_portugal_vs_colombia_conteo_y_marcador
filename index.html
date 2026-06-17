@@ -136,11 +136,11 @@
         }
 
         #home-team-wrapper, #countdown-home {
-            color: var(--red-color);
-        }
-
-        #away-team-wrapper, #countdown-away {
             color: var(--blue-color);
+        }
+        
+        #away-team-wrapper, #countdown-away {
+            color: var(--red-color);
         }
 
         #countdown-container {
@@ -163,14 +163,14 @@
             #home-team-wrapper {
                 /* Custom horizontal positioning for landscape */
                 position: absolute;
-                left: 19%;
-                top: 46.5%;
+                right: 16%;
+                top: 46%;
             }
             #away-team-wrapper {
                 /* Custom horizontal positioning for landscape */
                 position: absolute;
-                right: 16%;
-                top: 46%;
+                left: 19%;
+                top: 46.5%;
             }
             #time-wrapper {
                 /* Custom horizontal positioning for landscape */
@@ -200,13 +200,13 @@
             #countdown-home {
                 position: absolute;
                 top: 80%;
-                left: 40%;
+                right: 22.2%;
                 font-size: 16px;
             }
             #countdown-away {
                 position: absolute;
                 top: 80%;
-                right: 22.2%;
+                left: 40%;
                 font-size: 16px;
             }
         }
@@ -217,13 +217,13 @@
                 /* Custom vertical positioning for portrait */
                 position: absolute;
                 top: 56.5%;
-                left: 1%;
+                right: -2%;
             }
             #away-team-wrapper {
                 /* Custom vertical positioning for portrait */
                 position: absolute;
                 top: 56.5%;
-                right: -2%;
+                left: 1%;
             }
             #time-wrapper {
                 /* Custom vertical positioning for portrait */
@@ -256,14 +256,14 @@
             #countdown-home {
                 position: absolute;
                 top: 66%;
-                right: 42.5%;
+                left: 64.5%;
                 font-size: 18px;
                 letter-spacing: 0;
             }
             #countdown-away {
                 position: absolute;
                 top: 66%;
-                left: 64.5%;
+                right: 42.5%;
                 font-size: 18px;
                 letter-spacing: 0;
             }
@@ -307,8 +307,8 @@
     /**
      * Logic for Screen Size and Image Selection:
      */
-    const TARGET_DATE = new Date('2026-06-27T18:30:00-05:00'); // prod
-    // const TARGET_DATE = new Date('2026-06-17T16:01:00-05:00'); // dev
+    // const TARGET_DATE = new Date('2026-06-27T18:30:00-05:00'); // prod
+    const TARGET_DATE = new Date('2026-06-17T16:01:00-05:00'); // dev
 
     function isGameStarted() {
         // Force current time to be compared with the target UTC-5 date
@@ -366,9 +366,9 @@
     updateCountdownDisplay();
     window.addEventListener('resize', updateBackground);
 
-    const GAME_ID = "portugal_vs_colombia";
-    const STORAGE_KEY = "portugal_vs_colombia_score";
-    const TIME_STORAGE_KEY = "portugal_vs_colombia_time";
+    const GAME_ID = "colombia_vs_portugal";
+    const STORAGE_KEY = "colombia_vs_portugal_score";
+    const TIME_STORAGE_KEY = "colombia_vs_portugal_time";
     
     function formatScore(num) {
         return num.toString().padStart(2, '0');
@@ -400,8 +400,8 @@
 
     async function loadData() {
         try {
-            const res = await fetch("https://doradobet-server.onrender.com/data?gameId=16248990"); // prod
-            // const res = await fetch("http://localhost:9009/data?gameId=16248990"); // dev
+            // const res = await fetch("https://doradobet-server.onrender.com/data?gameId=16248990"); // prod
+            const res = await fetch("http://localhost:9009/data?gameId=16248990"); // dev
             if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
             
             const data = await res.json();
@@ -445,7 +445,7 @@
     }
 
     loadData();
-    setInterval(loadData, 1000); // prod
+    // setInterval(loadData, 1000); // prod
 </script>
 </body>
 </html>
